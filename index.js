@@ -12,7 +12,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-    mongoose.connect("mongodb://127.0.0.1:27017/todo");
+    // mongoose.connect("mongodb://127.0.0.1:27017/todo");
+    mongoose.connect("mongodb+srv://todo-app:3352375@cluster0.ukc7tpd.mongodb.net/todo");
+    // const mongoURI = "mongodb+srv://<username>:<password>@cluster0.mongodb.net/myDatabase?retryWrites=true&w=majority";
 
 // --- AUTH ROUTES ---
 
