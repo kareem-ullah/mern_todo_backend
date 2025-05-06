@@ -184,15 +184,32 @@ app.get("/getTodos", authMiddleware, async (req, res) => {
 });
 
 // Add new todo
+// app.post("/add", authMiddleware, async (req, res) => {
+//   const { task } = req.body;
+//   if (!task) {
+//     return res.status(400).json({ error: "Task is missing!" });
+//   }
+//   try {
+//     const newTodo = await TodoModel.create({ task, userId: req.user.id });
+//     res.json(newTodo);
+//   } catch (err) {
+//     res.status(500).json({ error: "Failed to save task" });
+//   }
+// });
+
+
 app.post("/add", authMiddleware, async (req, res) => {
   const { task } = req.body;
+  
   if (!task) {
     return res.status(400).json({ error: "Task is missing!" });
   }
+  
   try {
     const newTodo = await TodoModel.create({ task, userId: req.user.id });
     res.json(newTodo);
   } catch (err) {
+    console.error("Error while adding task:", err);  // Error ko log karna zaroori hai
     res.status(500).json({ error: "Failed to save task" });
   }
 });
